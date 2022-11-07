@@ -7,15 +7,21 @@ import Header from './header';
 import Home from '../routes/home';
 import Profile from '../routes/profile';
 
-const App = () => (
-	<div id="app">
-		<Header />
-		<Router>
-			<Home path="/" />
-			<Profile path="/profile/" user="me" />
-			<Profile path="/profile/:user" />
-		</Router>
-	</div>
-)
+import { AuthProvider } from '../contexts/Auth.js';
+
+const App = () => {
+	return (
+		<div id="app">
+			<AuthProvider>
+				<Header />
+				<Router>
+					<Home path="/" />
+					<Profile path="/profile/" user="me" />
+					<Profile path="/profile/:user" />
+				</Router>
+			</AuthProvider>
+		</div>
+	)
+}
 
 export default App;
